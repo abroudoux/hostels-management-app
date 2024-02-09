@@ -10,6 +10,13 @@
     <p>NAME {{ $hostel->name }}</p>
     <p>LOCATION {{ $hostel->location }}</p>
 
+    <h1>CHAMBRES ASSOCIÉES :</h1>
+    <ul>
+        @foreach ($rooms as $room)
+            <li>{{ $room->name }} - {{ $room->is_reserved }}</p>
+        @endforeach
+    </ul>
+
     <a href="{{ route('hostels.index', $hostel->id) }}">Retourner à la liste des hôtels</a>
 </body>
 </html>

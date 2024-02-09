@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Hostel;
+use App\Models\Room;
 use Illuminate\Http\Request;
 
 class HostelController extends Controller
@@ -16,7 +17,8 @@ class HostelController extends Controller
     public function show($id)
     {
         $hostel = Hostel::find($id);
-        return view('hostels.show', compact('hostel'));
+        $rooms = Room::where('hostel_id', $id)->get();
+        return view('hostels.show', compact('hostel', 'rooms'));
     }
 
     public function create()
@@ -26,7 +28,6 @@ class HostelController extends Controller
 
     public function store(Request $request)
     {
-        $hostel = Hostel::create($request->all());
         return redirect()->route('hostels.index');
     }
 
