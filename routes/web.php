@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\HostelController;
+use App\Http\Controllers\RoomController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -35,6 +36,13 @@ Route::middleware('auth')->group(function () {
     Route::get('/hostel/{id}/edit', [HostelController::class, 'edit'])->name('hostels.edit');
     Route::put('/hostel/{id}/update', [HostelController::class, 'update'])->name('hostels.update');
     Route::delete('/hostel', [HostelController::class, 'destroy'])->name('hostels.destroy');
+    // ROOMS
+    Route::get('/rooms', [RoomController::class, 'index'])->name('rooms.index');
+    Route::get('/room', [RoomController::class, 'create'])->name('rooms.create');
+    Route::post('/room', [RoomController::class, 'store'])->name('rooms.store');
+    Route::get('/room/{id}/edit', [RoomController::class, 'edit'])->name('rooms.edit');
+    Route::put('/room/{id}/update', [RoomController::class, 'update'])->name('rooms.update');
+    Route::delete('/room', [RoomController::class, 'destroy'])->name('rooms.destroy');
 });
 
 require __DIR__.'/auth.php';

@@ -24,7 +24,6 @@ class HostelFactory extends Factory
         return [
             'name' => $this->faker->unique()->company(),
             'location' => $this->faker->address(),
-            'is_reserved' => $this->faker->boolean(),
         ];
     }
 }

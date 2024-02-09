@@ -11,12 +11,19 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('hostels', function (Blueprint $table) {
+        Schema::create('rooms', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('location');
+            $table->string('room_number');
+            $table->unsignedBigInteger('hostel_id');
+            $table->boolean('is_reserved')->default(false);
             $table->timestamps();
         });
+
+        Schema::table('rooms', function (Blueprint $table) {
+            $table->foreign('hostel_id')->references('id')->on('hostels')->onDelete('cascade');
+        });
+
     }
 
     /**
@@ -24,6 +31,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('hostels');
+        Schema::dropIfExists('rooms');
     }
 };
