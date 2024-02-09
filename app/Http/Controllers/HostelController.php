@@ -13,6 +13,12 @@ class HostelController extends Controller
         return view('hostels.index', compact('hostels'));
     }
 
+    public function show($id)
+    {
+        $hostel = Hostel::find($id);
+        return view('hostels.show', compact('hostel'));
+    }
+
     public function create()
     {
         return view('hostels.create');

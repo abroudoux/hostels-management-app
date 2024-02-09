@@ -34,6 +34,8 @@
                             <input type="hidden" value="{{ $room->id }}" name="id">
                             <button type="submit">Supprimer</button>
                         </form>
+                        <hr>
+                        <a href="{{ route('rooms.show', $room->id) }}">Détails</a>
                     </td>
                 </tr>
             @endforeach

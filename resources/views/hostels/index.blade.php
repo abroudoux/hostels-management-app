@@ -32,6 +32,8 @@
                             <input type="hidden" value="{{ $hostel->id }}" name="id">
                             <button type="submit">Supprimer</button>
                         </form>
+                        <hr>
+                        <a href="{{ route('hostels.show', $hostel->id) }}">Détails</a>
                     </td>
                 </tr>
             @endforeach

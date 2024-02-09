@@ -31,6 +31,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     // HOSTELS
     Route::get('/hostels', [HostelController::class, 'index'])->name('hostels.index');
+    Route::get('/hostel/{id}', [HostelController::class, 'show'])->name('hostels.show');
     Route::get('/hostel', [HostelController::class, 'create'])->name('hostels.create');
     Route::post('/hostel', [HostelController::class, 'store'])->name('hostels.store');
     Route::get('/hostel/{id}/edit', [HostelController::class, 'edit'])->name('hostels.edit');
@@ -38,6 +39,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/hostel', [HostelController::class, 'destroy'])->name('hostels.destroy');
     // ROOMS
     Route::get('/rooms', [RoomController::class, 'index'])->name('rooms.index');
+    Route::get('/room/{id}', [RoomController::class, 'show'])->name('rooms.show');
     Route::get('/room', [RoomController::class, 'create'])->name('rooms.create');
     Route::post('/room', [RoomController::class, 'store'])->name('rooms.store');
     Route::get('/room/{id}/edit', [RoomController::class, 'edit'])->name('rooms.edit');

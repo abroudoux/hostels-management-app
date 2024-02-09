@@ -20,6 +20,9 @@
         <label for="hostel_id">hostel_id</label>
         <input type="text" name="hostel_id" id="hostel_id" value="{{ $room->hostel_id }}">
         <br>
+        <label for="is_reserver">Toggle</label>
+        <input type="checkbox" name="is_reserver" id="is_reserver" value="1" {{ $room->is_reserved ? 'checked' : '' }}>
+        <br>
         <button type="submit">Ajouter</button>
     </form>
 
