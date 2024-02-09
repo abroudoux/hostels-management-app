@@ -13,7 +13,11 @@
     <h1>CHAMBRES ASSOCIÉES :</h1>
     <ul>
         @foreach ($rooms as $room)
-            <li>{{ $room->name }} - {{ $room->is_reserved }}</p>
+            <li>{{ $room->id }} - {{ $room->name }} - {{ $room->is_reserved }}</p>
+            <form action="{{ route('rooms.reserve', ['id' => $room->id]) }}" method="POST">
+                @csrf
+                <button type="submit">Réserver</button>
+            </form>
         @endforeach
     </ul>
 

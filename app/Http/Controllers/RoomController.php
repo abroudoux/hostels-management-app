@@ -54,4 +54,13 @@ class RoomController extends Controller
 
         return redirect()->route('rooms.index');
     }
+
+    public function reserve(Request $request, $id)
+    {
+        $room = Room::find($id);
+        $room->is_reserved = 1;
+        $room->save();
+
+        return redirect()->route('hostels.index');
+    }
 }
