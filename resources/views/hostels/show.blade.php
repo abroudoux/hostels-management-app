@@ -10,14 +10,21 @@
     <p>NAME {{ $hostel->name }}</p>
     <p>LOCATION {{ $hostel->location }}</p>
 
-    <h1>CHAMBRES ASSOCIÉES :</h1>
+    <h1>CHAMBRES DISPONIBLES :</h1>
     <ul>
-        @foreach ($rooms as $room)
+        @foreach ($roomsAvaibles as $room)
             <li>{{ $room->id }} - {{ $room->name }} - {{ $room->is_reserved }}</p>
             <form action="{{ route('rooms.reserve', ['id' => $room->id]) }}" method="POST">
                 @csrf
                 <button type="submit">Réserver</button>
             </form>
+        @endforeach
+    </ul>
+
+    <h1>CHAMBRES NON DISPONIBLES :</h1>
+    <ul>
+        @foreach ($roomsNonAvaibles as $room)
+            <li>{{ $room->id }} - {{ $room->name }} - {{ $room->is_reserved }}</p>
         @endforeach
     </ul>
 

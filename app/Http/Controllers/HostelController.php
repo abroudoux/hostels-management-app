@@ -17,8 +17,9 @@ class HostelController extends Controller
     public function show($id)
     {
         $hostel = Hostel::find($id);
-        $rooms = Room::where('hostel_id', $id)->get();
-        return view('hostels.show', compact('hostel', 'rooms'));
+        $roomsAvaibles = Room::where('hostel_id', $id)->where('is_reserved', 0)->get();
+        $roomsNonAvaibles = Room::where('hostel_id', $id)->where('is_reserved', 1)->get();
+        return view('hostels.show', compact('hostel', 'roomsAvaibles', 'roomsNonAvaibles'));
     }
 
     public function create()
