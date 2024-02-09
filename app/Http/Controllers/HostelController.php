@@ -29,13 +29,15 @@ class HostelController extends Controller
 
     public function store(Request $request)
     {
+        $hostel = Hostel::create($request->all());
         return redirect()->route('hostels.index');
     }
 
     public function edit($id)
     {
         $hostel = Hostel::find($id);
-        return view('hostels.edit', compact('hostel'));
+        $rooms = Room::where('hostel_id', $id)->get();
+        return view('hostels.edit', compact('hostel', 'rooms'));
     }
 
     public function update(Request $request, $id)

@@ -11,23 +11,32 @@
     <p>LOCATION {{ $hostel->location }}</p>
 
     <h1>CHAMBRES DISPONIBLES :</h1>
-    <ul>
-        @foreach ($roomsAvaibles as $room)
-            <li>{{ $room->id }} - {{ $room->name }} - {{ $room->is_reserved }}</p>
-            <form action="{{ route('rooms.reserve', ['id' => $room->id]) }}" method="POST">
-                @csrf
-                <button type="submit">Réserver</button>
-            </form>
-        @endforeach
-    </ul>
+    @if (count($roomsAvaibles) === 0)
+        <p>Aucune chambre disponible.</p>
+    @else
+        <ul>
+            @foreach ($roomsAvaibles as $room)
+                <li>{{ $room->name }} - {{ $room->is_reserved }}</p>
+                <form action="{{ route('rooms.reserve', ['id' => $room->id]) }}" method="POST">
+                    @csrf
+                    <button type="submit">Réserver</button>
+                </form>
+            @endforeach
+        </ul>
+    @endif
 
     <h1>CHAMBRES NON DISPONIBLES :</h1>
-    <ul>
-        @foreach ($roomsNonAvaibles as $room)
-            <li>{{ $room->id }} - {{ $room->name }} - {{ $room->is_reserved }}</p>
-        @endforeach
-    </ul>
+    @if (count($roomsNonAvaibles) === 0)
+        <p>Aucune chambre non disponible.</p>
+    @else
+        <ul>
+            @foreach ($roomsNonAvaibles as $room)
+                <li>{{ $room->name }}</p>
+            @endforeach
+        </ul>
+    @endif
 
     <a href="{{ route('hostels.index', $hostel->id) }}">Retourner à la liste des hôtels</a>
 </body>
 </html>
+
