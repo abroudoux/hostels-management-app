@@ -1,42 +1,50 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hostel {{ $hostel->id }}</title>
-</head>
-<body>
-    <h1>HOSTEL {{ $hostel->id }}</h1>
-    <p>NAME {{ $hostel->name }}</p>
-    <p>LOCATION {{ $hostel->location }}</p>
+<x-app-layout>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+            {{ __('Hostel') }}
+        </h2>
+    </x-slot>
 
-    <h2>CHAMBRES DISPONIBLES :</h2>
-    @if (count($roomsAvaibles) === 0)
-        <p>Aucune chambre disponible.</p>
-    @else
-        <ul>
-            @foreach ($roomsAvaibles as $room)
-                <li>{{ $room->name }} - {{ $room->is_reserved }}</p>
-                <form action="{{ route('rooms.reserve', ['id' => $room->id]) }}" method="POST">
-                    @csrf
-                    <button type="submit">Réserver</button>
-                </form>
-            @endforeach
-        </ul>
-    @endif
+    <div class="py-12">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="p-6 text-gray-900 dark:text-gray-100">
+            <h1 class="font-semibold text-3xl pb-4">{{ $hostel->name }}</h1>
+            <p clas="font-medium text-md pb-2">{{ $hostel->location }}</p>
 
-    <h2>CHAMBRES NON DISPONIBLES :</h2>
-    @if (count($roomsNonAvaibles) === 0)
-        <p>Aucune chambre non disponible.</p>
-    @else
-        <ul>
-            @foreach ($roomsNonAvaibles as $room)
-                <li>{{ $room->name }}</p>
-            @endforeach
-        </ul>
-    @endif
+            <div class="py-6">
+                <h2 class="text-white text-lg py-4">CHAMBRES DISPONIBLES :</h2>
+                @if (count($roomsAvaibles) === 0)
+                    <p class="text-white">Aucune chambre disponible.</p>
+                @else
+                    <ul>
+                        @foreach ($roomsAvaibles as $room)
+                            <li class="text-white py-2">{{ $room->name }}</p>
+                            <form action="{{ route('rooms.reserve', ['id' => $room->id]) }}" method="POST">
+                                @csrf
+                                <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white text-lg font-bold py-3 px-4 rounded-lg">Réserver</button>
+                            </form>
+                        @endforeach
+                    </ul>
+                @endif
 
-    <a href="{{ route('hostels.index', $hostel->id) }}">Retourner à la liste des hôtels</a>
-</body>
-</html>
+                <h2 class="text-white text-lg py-4">CHAMBRES NON DISPONIBLES :</h2>
+                @if (count($roomsNonAvaibles) === 0)
+                    <p class="text-white">Toutes les chambres sont disponibles</p>
+                @else
+                    <ul>
+                        @foreach ($roomsNonAvaibles as $room)
+                            <li class="text-white">{{ $room->name }}</p>
+                        @endforeach
+                    </ul>
+                @endif
+            </div>
 
+                <div class="py-6">
+                    <button>
+                        <a href="{{ route('hostels.index', $hostel->id) }}" class="bg-blue-500 hover:bg-blue-700 text-white text-lg font-bold py-3 px-4 rounded-lg">Retourner à la liste des hôtels</a>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</x-app-layout>
