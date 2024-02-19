@@ -70,6 +70,7 @@ class ReservationController extends Controller
         $reservation = Reservation::find($request->get('id'));
         $room = Room::find($reservation->room_id);
         $room->is_reserved = 0;
+        $room->save();
         $reservation->delete();
 
         return redirect()->route('dashboard');

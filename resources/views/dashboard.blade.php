@@ -46,7 +46,7 @@
                 <div class="m-6">
                     <h2 class="dark:text-gray-100 py-6 text-xl font-semibold">Envie de réserver une chambre ?</h2>
                     <button>
-                        <a href="{{ route('hostels.index') }}" class="bg-blue-500 hover:bg-blue-700 text-white text-lg font-bold py-3 px-4 rounded-lg">
+                        <a href="{{ route('rooms.index') }}" class="bg-blue-500 hover:bg-blue-700 text-white text-lg font-bold py-3 px-4 rounded-lg">
                             Voir les chambres
                         </a>
                     </button>

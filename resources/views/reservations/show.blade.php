@@ -15,9 +15,11 @@
             <div class="py-6">
                <h2 class="text-white text-lg py-4">ACTIONS :</h2>
                <div class="flex flex-row gap-4 items-center">
-                    <button class="py-2">
-                        <a href="{{ route('reservations.update', $reservation->id) }}" class="bg-blue-500 hover:bg-blue-700 text-white text-lg font-bold py-2 px-4 rounded-lg">Modifier</a>
-                    </button>
+                    @if(auth()->user()->is_admin)
+                        <button class="py-2">
+                            <a href="{{ route('reservations.update', $reservation->id) }}" class="bg-blue-500 hover:bg-blue-700 text-white text-lg font-bold py-2 px-4 rounded-lg">Modifier</a>
+                        </button>
+                    @endif
                     <form action="{{ route('reservations.destroy') }}" method="POST" class="py-2">
                         @csrf
                         @method('DELETE')
