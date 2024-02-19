@@ -11,6 +11,7 @@
     <p>HOSTEL_ID {{ $room->hostel_id }}</p>
     <form action="{{ route('rooms.reserve', ['id' => $room->id]) }}" method="POST">
         @csrf
+        @method('DELETE')
         <button type="submit">Réserver</button>
     </form>
 

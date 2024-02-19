@@ -5,6 +5,7 @@ use App\Http\Controllers\HostelController;
 use App\Http\Controllers\RoomController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ReservationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -51,6 +52,13 @@ Route::middleware('auth')->group(function () {
     Route::put('/room/{id}/update', [RoomController::class, 'update'])->name('rooms.update');
     Route::delete(ROOM, [RoomController::class, 'destroy'])->name('rooms.destroy');
     Route::post('/room/{id}/reserve/{user_id}', [RoomController::class, 'reserve'])->name('rooms.reserve');
+
+    // RESERVATIONS
+    Route::post('/reservation/{id}/{user_id}', [ReservationController::class, 'create'])->name('reservations.create');
+    Route::get('/reservation/{id}', [ReservationController::class, 'show'])->name('reservations.show');
+    Route::get('/reservation/{id}/edit', [ReservationController::class, 'edit'])->name('reservations.edit');
+    Route::put('/reservation/{id}/update', [ReservationController::class, 'update'])->name('reservations.update');
+    Route::delete('/reservation', [ReservationController::class, 'destroy'])->name('reservations.destroy');
 });
 
 require __DIR__.'/auth.php';

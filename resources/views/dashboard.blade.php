@@ -33,6 +33,10 @@
                                         <td class="px-3 py-4 dark:text-gray-100">{{ $reservation->hostel_location }}</td>
                                         <td class="px-3 py-4 dark:text-gray-100">{{ $reservation->start_date }}</td>
                                         <td class="px-3 py-4 dark:text-gray-100">{{ $reservation->end_date }}</td>
+                                        <td class="px-3 py-4 dark:text-gray-100">
+                                            <a href="{{ route('reservations.show', $reservation->id) }}" class="bg-blue-500 rounded-lg py-2 px-3 hover:bg-blue-700">
+                                                Modifier
+                                            </a>
                                     </tr>
                                 @endforeach
                             </tbody>
