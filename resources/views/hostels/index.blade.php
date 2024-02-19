@@ -24,18 +24,22 @@
                                 <td class="px-3 py-4 dark:text-gray-100">{{ $hostel->name }}</td>
                                 <td class="px-3 py-4 dark:text-gray-100">{{ $hostel->location }}</td>
                                 <td class="px-3 py-4 dark:text-gray-100 flex flex-row items-center gap-4">
+                                    @if(auth()->user()->is_admin)
+                                        <button class="py-2">
+                                            <a href="{{ route('hostels.edit', $hostel->id) }}" class="bg-blue-500 hover:bg-blue-700 text-white text-lg font-bold py-2 px-4 rounded-lg">Modifier</a>
+                                        </button>
+                                    @endif
                                     <button class="py-2">
-                                        <a href="{{ route('hostels.edit', $hostel->id) }}" class="bg-blue-500 hover:bg-blue-700 text-white text-lg font-bold py-2 px-4 rounded-lg">Modifier</a>
+                                        <a href="{{ route('hostels.show', $hostel->id) }}" class="bg-green-500 hover:bg-green-700 text-white text-lg font-bold py-2 px-4 rounded-lg">Réserver</a>
                                     </button>
-                                    <button class="py-2">
-                                        <a href="{{ route('hostels.show', $hostel->id) }}" class="bg-green-500 hover:bg-green-700 text-white text-lg font-bold py-2 px-4 rounded-lg">Détails</a>
-                                    </button>
-                                    <form action="{{ route('hostels.destroy') }}" method="POST" class="py-2">
-                                        @csrf
-                                        @method('DELETE')
-                                        <input type="hidden" value="{{ $hostel->id }}" name="id">
-                                        <button type="submit" class="bg-red-500 hover:bg-red-700 text-white text-lg font-bold py-2 px-4 rounded-lg">Supprimer</button>
-                                    </form>
+                                    @if(auth()->user()->is_admin)
+                                        <form action="{{ route('hostels.destroy') }}" method="POST" class="py-2">
+                                            @csrf
+                                            @method('DELETE')
+                                            <input type="hidden" value="{{ $hostel->id }}" name="id">
+                                            <button type="submit" class="bg-red-500 hover:bg-red-700 text-white text-lg font-bold py-2 px-4 rounded-lg">Supprimer</button>
+                                        </form>
+                                    @endif
                                 </td>
                             </tr>
                         @endforeach

@@ -14,5 +14,12 @@ class UsersSeeder extends Seeder
     public function run(): void
     {
         User::factory()->count(20)->create();
+
+        User::create([
+            'name' => 'toto',
+            'email' => 'toto@gmail.com',
+            'password' => 'azertyuiop',
+            'is_admin' => '1',
+        ]);
     }
 }

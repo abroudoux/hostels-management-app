@@ -68,6 +68,8 @@ class ReservationController extends Controller
     public function destroy(Request $request)
     {
         $reservation = Reservation::find($request->get('id'));
+        $room = Room::find($reservation->room_id);
+        $room->is_reserved = 0;
         $reservation->delete();
 
         return redirect()->route('dashboard');

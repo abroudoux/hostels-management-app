@@ -1,0 +1,19 @@
+version: "3.9"
+
+services:
+  db:
+    container_name: laravel-test-db
+    image: postgres:16.1-alpine
+    ports:
+      - "32754:5432"
+    env_file:
+      - .env
+    environment:
+      POSTGRES_DB: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: mysecretpassword
+    volumes:
+      - ./data:/var/lib/postgresql/data
+
+volumes:
+  laravel-react-template:

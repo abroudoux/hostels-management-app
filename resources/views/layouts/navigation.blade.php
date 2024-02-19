@@ -60,6 +60,21 @@
                                 {{ __('Log Out') }}
                             </x-dropdown-link>
                         </form>
+
+                        <form method="POST" action="{{ route('admin') }}">
+                            @csrf
+
+                            <x-dropdown-link :href="route('admin')"
+                                    onclick="event.preventDefault();
+                                                this.closest('form').submit();">
+                                @if(auth()->user()->is_admin)
+                                    {{ __('Switch admin') }}
+                                @else
+                                    {{ __('Become admin') }}
+                                @endif
+
+                            </x-dropdown-link>
+                        </form>
                     </x-slot>
                 </x-dropdown>
             </div>
