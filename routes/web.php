@@ -50,7 +50,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/room/{id}/edit', [RoomController::class, 'edit'])->name('rooms.edit');
     Route::put('/room/{id}/update', [RoomController::class, 'update'])->name('rooms.update');
     Route::delete(ROOM, [RoomController::class, 'destroy'])->name('rooms.destroy');
-    Route::post('/room/{id}/reserve', [RoomController::class, 'reserve'])->name('rooms.reserve');
+    Route::post('/room/{id}/reserve/{user_id}', [RoomController::class, 'reserve'])->name('rooms.reserve');
 });
 
 require __DIR__.'/auth.php';

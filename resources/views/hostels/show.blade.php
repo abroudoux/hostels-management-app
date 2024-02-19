@@ -20,9 +20,11 @@
                         @foreach ($roomsAvaibles as $room)
                             <li class="flex flex-row items-center border-t justify-between border-b border-white gap-4 py-3">
                                 <p class="text-white py-2">{{ $room->name }}</p>
-                                <form action="{{ route('rooms.reserve', ['id' => $room->id, 'user_id' => Auth::user()->id]) }}" method="POST">
+                                <form action="{{ route('rooms.reserve', ['id' => $room->id, 'user_id' => Auth::user()->id, 'hostel_id' => $hostel->id]) }}" method="POST">
                                     @csrf
-                                    <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white text-lg font-bold py-3 px-4 rounded-lg">Réserver</button>
+                                    <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white text-lg font-bold py-3 px-4 rounded-lg">
+                                        Réserver
+                                    </button>
                                 </form>
                             </li>
                         @endforeach
