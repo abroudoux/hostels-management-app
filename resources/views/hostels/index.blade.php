@@ -15,6 +15,7 @@
                         <tr>
                             <th class="px-3 py-3 bg-gray-50 dark:bg-gray-700 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Name</th>
                             <th class="px-3 py-3 bg-gray-50 dark:bg-gray-700 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Location</th>
+                            <th class="px-3 py-3 bg-gray-50 dark:bg-gray-700 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Chambres disponibles</th>
                             <th class="px-3 py-3 bg-gray-50 dark:bg-gray-700 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Actions</th>
                         </tr>
                     </thead>
@@ -23,6 +24,7 @@
                             <tr>
                                 <td class="px-3 py-4 dark:text-gray-100">{{ $hostel->name }}</td>
                                 <td class="px-3 py-4 dark:text-gray-100">{{ $hostel->location }}</td>
+                                <td class="px-3 py-4 dark:text-gray-100">{{ $hostel->availableRoomsCount }}</td>
                                 <td class="px-3 py-4 dark:text-gray-100 flex flex-row items-center gap-4">
                                     @if(auth()->user()->is_admin)
                                         <button class="py-2">

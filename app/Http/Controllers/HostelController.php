@@ -11,6 +11,11 @@ class HostelController extends Controller
     public function index()
     {
         $hostels = Hostel::all();
+        $hostels->each(function ($hostel) {
+            $hostel->availableRoomsCount = Room::where('hostel_id', $hostel->id)
+                ->where('is_reserved', 0)
+                ->count();
+        });
         return view('hostels.index', compact('hostels'));
     }
 
