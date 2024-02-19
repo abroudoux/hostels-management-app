@@ -10,31 +10,6 @@ use App\Models\Hostel;
 
 class ReservationController extends Controller
 {
-    public function create($id, $user_id)
-    {
-        $room = Room::find($id);
-        $user = User::find($user_id);
-        $hostel = Hostel::find($room->hostel_id);
-
-        $room->is_reserved = 1;
-        $room->save();
-
-        $reservation = new Reservation();
-        $reservation->room_id = $room->id;
-        $reservation->room_name = $room->name;
-        $reservation->room_number = $room->room_number;
-        $reservation->hostel_id = $hostel->id;
-        $reservation->hostel_name = $hostel->name;
-        $reservation->hostel_location = $hostel->location;
-        $reservation->user_id = $user->id;
-        $reservation->user_name = $user->name;
-        $reservation->start_date = now();
-        $reservation->end_date = now()->addDays(2);
-        $reservation->save();
-
-        return redirect()->route('hostels.index');
-    }
-
     public function show($id)
     {
         $reservation = Reservation::find($id);
@@ -63,6 +38,31 @@ class ReservationController extends Controller
         $reservation->save();
 
         return redirect()->route('reservations.index');
+    }
+
+    public function create($id, $user_id)
+    {
+        $room = Room::find($id);
+        $user = User::find($user_id);
+        $hostel = Hostel::find($room->hostel_id);
+
+        $room->is_reserved = 1;
+        $room->save();
+
+        $reservation = new Reservation();
+        $reservation->room_id = $room->id;
+        $reservation->room_name = $room->name;
+        $reservation->room_number = $room->room_number;
+        $reservation->hostel_id = $hostel->id;
+        $reservation->hostel_name = $hostel->name;
+        $reservation->hostel_location = $hostel->location;
+        $reservation->user_id = $user->id;
+        $reservation->user_name = $user->name;
+        $reservation->start_date = now();
+        $reservation->end_date = now()->addDays(2);
+        $reservation->save();
+
+        return redirect()->route('dashboard');
     }
 
     public function destroy(Request $request)

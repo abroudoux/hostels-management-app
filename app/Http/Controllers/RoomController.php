@@ -12,7 +12,7 @@ class RoomController extends Controller
 {
     public function index()
     {
-        $rooms = Room::all();
+        $rooms = Room::all()->where('is_reserved', 0);
         return view('rooms.index', compact('rooms'));
     }
 

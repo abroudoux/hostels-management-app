@@ -9,7 +9,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
-                    <h1 class="font-semibold text-lg pb-6">VOS RÉSERVATIONS :</h1>
+                    <h1 class="font-semibold text-3xl pb-6">Vos réservations :</h1>
                     @if (count($reservations) === 0)
                         <p>Aucune réservation pour le moment.</p>
                     @else

@@ -1,50 +1,42 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rooms</title>
-</head>
-<body>
-    <h1>ROOMS</h1>
+<x-app-layout>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+            {{ __('Toutes les chambres') }}
+        </h2>
+    </x-slot>
 
-    <table border="1">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Hostel ID</th>
-                <th>Is Reserved ?</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach ($rooms as $room)
-                <tr>
-                    <td>{{ $room->id }}</td>
-                    <td>{{ $room->name }}</td>
-                    <td>{{ $room->location }}</td>
-                    <td>{{ $room->is_reserved }}</td>
-                    <td>
-                        <a href="{{ route('rooms.edit', $room->id) }}">Modifier</a>
-                        <hr>
-                        <form action="{{ route('rooms.destroy') }}" method="POST">
-                            @csrf
-                            @method('DELETE')
-                            <input type="hidden" value="{{ $room->id }}" name="id">
-                            <button type="submit">Supprimer</button>
-                        </form>
-                        <hr>
-                        <a href="{{ route('rooms.show', $room->id) }}">Détails</a>
-                    </td>
-                </tr>
-            @endforeach
-        </tbody>
-    </table>
+    <div class="py-12">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="p-6 text-gray-900 dark:text-gray-100 dark:bg-gray-800 sm:rounded-lg">
+                <h1 class="font-semibold text-3xl pb-6">Liste des chambres disponibles</h1>
 
-    <hr>
-    <a href="{{ route('rooms.create') }}">Ajouter une room</a>
-    <hr>
-
-</body>
-</html>
+                <table class="min-w-full divide-y divide-gray-200 dark:bg-gray-800" aria-label="Rooms Table">
+                    <thead>
+                        <tr>
+                            <th class="px-3 py-3 bg-gray-50 dark:bg-gray-700 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Name</th>
+                            <th class="px-3 py-3 bg-gray-50 dark:bg-gray-700 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Nom de l'hôtel</th>
+                            <th class="px-3 py-3 bg-gray-50 dark:bg-gray-700 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Location</th>
+                        </tr>
+                    </thead>
+                    <tbody class="bg-white dark:bg-gray-900 divide-y divide-gray-200">
+                        @foreach ($rooms as $room)
+                            <tr>
+                                <td class="px-3 py-4 dark:text-gray-100">{{ $room->name }}</td>
+                                <td class="px-3 py-4 dark:text-gray-100">{{ $room->hostel_name }}</td>
+                                <td class="px-3 py-4 dark:text-gray-100">{{ $room->hostel_location }}</td>
+                                <td class="px-3 py-4 dark:text-gray-100">
+                                    <form action="{{ route('reservations.create', ['id' => $room->id, 'user_id' => Auth::user()->id]) }}" method="POST">
+                                        @csrf
+                                        <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white text-lg font-bold py-3 px-4 rounded-lg">
+                                            Réserver
+                                        </button>
+                                    </form>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</x-app-layout>
