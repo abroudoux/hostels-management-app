@@ -14,8 +14,10 @@ return new class extends Migration
         Schema::create('rooms', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('room_number');
+            $table->integer('room_number');
             $table->unsignedBigInteger('hostel_id');
+            $table->string('hostel_name');
+            $table->string('hostel_location');
             $table->boolean('is_reserved')->default(false);
             $table->timestamps();
         });
@@ -23,7 +25,6 @@ return new class extends Migration
         Schema::table('rooms', function (Blueprint $table) {
             $table->foreign('hostel_id')->references('id')->on('hostels')->onDelete('cascade');
         });
-
     }
 
     /**

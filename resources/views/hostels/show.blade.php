@@ -10,7 +10,7 @@
     <p>NAME {{ $hostel->name }}</p>
     <p>LOCATION {{ $hostel->location }}</p>
 
-    <h1>CHAMBRES DISPONIBLES :</h1>
+    <h2>CHAMBRES DISPONIBLES :</h2>
     @if (count($roomsAvaibles) === 0)
         <p>Aucune chambre disponible.</p>
     @else
@@ -25,7 +25,7 @@
         </ul>
     @endif
 
-    <h1>CHAMBRES NON DISPONIBLES :</h1>
+    <h2>CHAMBRES NON DISPONIBLES :</h2>
     @if (count($roomsNonAvaibles) === 0)
         <p>Aucune chambre non disponible.</p>
     @else

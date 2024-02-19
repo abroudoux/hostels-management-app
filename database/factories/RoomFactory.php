@@ -26,12 +26,17 @@ class RoomFactory extends Factory
      */
     public function definition(): array
     {
-        $hostelId = Hostel::inRandomOrder()->first()->id;
+        $hostel = Hostel::inRandomOrder()->first();
+        $hostelId = $hostel->id;
+        $hostelName = $hostel->name;
+        $hostelLocation = $hostel->location;
 
         return [
             'name' => $this->faker->unique()->name(),
             'room_number' => $this->faker->unique()->numberBetween(1, 100),
             'hostel_id' => $hostelId,
+            'hostel_name' => $hostelName,
+            'hostel_location' => $hostelLocation,
         ];
     }
 }
