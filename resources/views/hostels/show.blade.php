@@ -18,16 +18,18 @@
                 @else
                     <ul>
                         @foreach ($roomsAvaibles as $room)
-                            <li class="text-white py-2">{{ $room->name }}</p>
-                            <form action="{{ route('rooms.reserve', ['id' => $room->id]) }}" method="POST">
-                                @csrf
-                                <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white text-lg font-bold py-3 px-4 rounded-lg">Réserver</button>
-                            </form>
+                            <li class="flex flex-row items-center border-t justify-between border-b border-white gap-4 py-3">
+                                <p class="text-white py-2">{{ $room->name }}</p>
+                                <form action="{{ route('rooms.reserve', ['id' => $room->id, 'user_id' => Auth::user()->id]) }}" method="POST">
+                                    @csrf
+                                    <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white text-lg font-bold py-3 px-4 rounded-lg">Réserver</button>
+                                </form>
+                            </li>
                         @endforeach
                     </ul>
                 @endif
 
-                <h2 class="text-white text-lg py-4">CHAMBRES NON DISPONIBLES :</h2>
+                <h2 class="text-white text-lg py-4 mt-6">CHAMBRES NON DISPONIBLES :</h2>
                 @if (count($roomsNonAvaibles) === 0)
                     <p class="text-white">Toutes les chambres sont disponibles</p>
                 @else

@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Dashboard') }}
+            {{ __('Vos réservations') }}
         </h2>
     </x-slot>
 
@@ -20,7 +20,6 @@
                                     <th class="px-3 py-3 bg-gray-50 dark:bg-gray-700 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Numéro de la room</th>
                                     <th class="px-3 py-3 bg-gray-50 dark:bg-gray-700 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Nom de l'hôtel</th>
                                     <th class="px-3 py-3 bg-gray-50 dark:bg-gray-700 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Localisation de l'hôtel</th>
-                                    <th class="px-3 py-3 bg-gray-50 dark:bg-gray-700 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Nom de l'utilisateur</th>
                                     <th class="px-3 py-3 bg-gray-50 dark:bg-gray-700 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Début de la réservation</th>
                                     <th class="px-3 py-3 bg-gray-50 dark:bg-gray-700 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Fin de la réservation</th>
                                 </tr>
@@ -32,7 +31,6 @@
                                         <td class="px-3 py-4 dark:text-gray-100">{{ $reservation->room_number }}</td>
                                         <td class="px-3 py-4 dark:text-gray-100">{{ $reservation->hostel_name }}</td>
                                         <td class="px-3 py-4 dark:text-gray-100">{{ $reservation->hostel_location }}</td>
-                                        <td class="px-3 py-4 dark:text-gray-100">{{ $reservation->user_name }}</td>
                                         <td class="px-3 py-4 dark:text-gray-100">{{ $reservation->start_date }}</td>
                                         <td class="px-3 py-4 dark:text-gray-100">{{ $reservation->end_date }}</td>
                                     </tr>
