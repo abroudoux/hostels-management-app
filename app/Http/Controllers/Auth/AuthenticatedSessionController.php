@@ -49,8 +49,15 @@ class AuthenticatedSessionController extends Controller
 
     public function admin(): RedirectResponse
     {
-        $user = Auth::user();
-        $user->is_admin = !$user->is_admin;
+        $user = auth()->user();
+
+        if (!$user->is_admin) {
+            $user->is_admin = 1;
+            $user->save();
+        } else {
+            $user->is_admin = 0;
+            $user->save();
+        }
 
         return redirect('dashboard');
     }
