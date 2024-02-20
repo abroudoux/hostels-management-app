@@ -32,7 +32,6 @@
                 @if(auth()->user()->is_admin)
                     <div class="py-6 mb-4">
                         <form action="{{ route('reservations.create', ['id' => $room->id, 'user_id' => Auth::user()->id]) }}" method="POST">
-                            @csrf
                             <label for="user_id" class="block text-gray-700 dark:text-white text-sm font-bold mb-2">Assigner à un utilisateur</label>
                             <select name="user_id" id="user_id" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
                                 <option value="">Sélectionner un utilisateur</option>
@@ -40,6 +39,7 @@
                                     <option value="{{ $user->id }}">{{ $user->name }}</option>
                                 @endforeach
                             </select>
+                            @csrf
                             <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 mt-4 rounded focus:outline-none focus:shadow-outline">Assigner</button>
                         </form>
                     </div>
