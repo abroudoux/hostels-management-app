@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('location');
-            $table->boolean('is_reserved')->default(false);
             $table->timestamps();
         });
     }

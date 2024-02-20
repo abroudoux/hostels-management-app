@@ -13,7 +13,6 @@ class Hostel extends Model
     protected $fillable = [
         'name',
         'location',
-        'is_reserved',
     ];
 
     /**
@@ -22,4 +21,11 @@ class Hostel extends Model
      * @var string
      */
     protected static $factory = HostelFactory::class;
+
+
+    public function rooms()
+    {
+        return $this->hasMany(Room::class);
+    }
+
 }

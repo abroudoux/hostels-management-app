@@ -51,4 +51,9 @@ class User extends Authenticatable
      * @var string
      */
     protected static $factory = UserFactory::class;
+
+    public function reservations()
+    {
+        return $this->hasMany(Reservation::class);
+    }
 }

@@ -16,7 +16,10 @@ class HostelController extends Controller
                 ->where('is_reserved', 0)
                 ->count();
         });
-        return view('hostels.index', compact('hostels'));
+        $hostelsAvaibles = $hostels->filter(function ($hostel) {
+            return $hostel->availableRoomsCount > 0;
+        });
+        return view('hostels.index', compact('hostels', 'hostelsAvaibles'));
     }
 
     public function show($id)

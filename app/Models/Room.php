@@ -25,4 +25,9 @@ class Room extends Model
      * @var string
      */
     protected static $factory = RoomFactory::class;
+
+    public function hostel()
+    {
+        return $this->belongsTo(Hostel::class, 'hostel_id');
+    }
 }

@@ -20,7 +20,7 @@
                         </tr>
                     </thead>
                     <tbody class="bg-white dark:bg-gray-900 divide-y divide-gray-200">
-                        @foreach ($hostels as $hostel)
+                        @foreach ($hostelsAvaibles as $hostel)
                             <tr>
                                 <td class="px-3 py-4 dark:text-gray-100">{{ $hostel->name }}</td>
                                 <td class="px-3 py-4 dark:text-gray-100">{{ $hostel->location }}</td>
@@ -49,9 +49,11 @@
                 </table>
 
                 <div class="py-6">
-                    <button>
-                        <a href="{{ route('hostels.create') }}" class="bg-blue-500 hover:bg-blue-700 text-white text-lg font-bold py-3 px-4 rounded-lg">Ajouter un hotel</a>
-                    </button>
+                    @if(auth()->user()->is_admin)
+                        <button>
+                            <a href="{{ route('hostels.create') }}" class="bg-blue-500 hover:bg-blue-700 text-white text-lg font-bold py-3 px-4 rounded-lg">Ajouter un hotel</a>
+                        </button>
+                    @endif
                     <button>
                         <a href="{{ route('dashboard') }}" class="border border-white text-white text-lg font-bold py-3 px-4 rounded-lg">Retour au dashboard</a>
                     </button>

@@ -12,5 +12,9 @@
                 <p clas="font-medium text-md pb-2">Par {{ $reservation->user_name }} du {{ $reservation->start_date }} au {{ $reservation->end_date }}</p>
             </div>
         </div>
+
+        <h2>User</h2>
+        <p>{{ $reservation->user->name }}</p>
+        <p>{{ $reservation->user->email }}</p>
     </div>
 </x-app-layout>

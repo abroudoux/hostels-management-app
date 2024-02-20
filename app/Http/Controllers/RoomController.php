@@ -36,7 +36,8 @@ class RoomController extends Controller
     public function edit($id)
     {
         $room = Room::find($id);
-        return view('rooms.edit', compact('room'));
+        $users = User::all();
+        return view('rooms.edit', compact('room', 'users'));
     }
 
     public function update(Request $request, $id)

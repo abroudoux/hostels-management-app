@@ -29,4 +29,19 @@ class Reservation extends Model
      * @var string
      */
     protected static $factory = ReservationFactory::class;
+
+    public function room()
+    {
+        return $this->belongsTo(Room::class, 'room_id');
+    }
+
+    public function hostel()
+    {
+        return $this->belongsTo(Hostel::class, 'hostel_id');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
 }
