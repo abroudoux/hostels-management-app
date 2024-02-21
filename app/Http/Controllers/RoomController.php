@@ -31,7 +31,7 @@ class RoomController extends Controller
 
     public function store(Request $request)
     {
-        $room = Room::create($request->all());
+        Room::create($request->all());
         return redirect()->route('rooms.index');
     }
 

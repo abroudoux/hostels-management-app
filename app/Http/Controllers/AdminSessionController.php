@@ -19,6 +19,6 @@ class AdminSessionController extends Controller
             $user->save();
         }
 
-        return redirect('dashboard');
+        return redirect()->back();
     }
 }

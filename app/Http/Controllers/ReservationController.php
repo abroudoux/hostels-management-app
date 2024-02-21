@@ -60,6 +60,7 @@ class ReservationController extends Controller
         $reservation->user_name = $user->name;
         $reservation->start_date = $request->get('start_date');
         $reservation->end_date = $request->get('end_date');
+        $reservation->persons = $request->get('persons');
         $reservation->save();
 
         return redirect()->route('dashboard');

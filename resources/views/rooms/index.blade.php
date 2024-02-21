@@ -28,6 +28,9 @@
                                 <td class="px-3 py-4 dark:text-gray-100">
                                     <form action="{{ route('reservations.create', ['id' => $room->id, 'user_id' => Auth::user()->id]) }}" method="POST" class="flex flew-row items-center">
                                         <div class="flex mr-2">
+                                            <input type="number" name="persons" class="bg-gray-100 dark:bg-gray-700 border-gray-300 dark:border-gray-600 rounded-lg px-3 py-2 mr-2" placeholder="Persons" required>
+                                        </div>
+                                        <div class="flex mr-2">
                                             <input type="date" name="start_date" class="bg-gray-100 dark:bg-gray-700 border-gray-300 dark:border-gray-600 rounded-lg px-3 py-2 mr-2" placeholder="Start Date" required>
                                             <input type="date" name="end_date" class="bg-gray-100 dark:bg-gray-700 border-gray-300 dark:border-gray-600 rounded-lg px-3 py-2" placeholder="End Date" required>
                                         </div>

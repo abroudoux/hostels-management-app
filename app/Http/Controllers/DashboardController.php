@@ -12,7 +12,7 @@ class DashboardController extends Controller
     {
         $user_id = auth()->user()->id;
         if (auth()->user()->isAdmin()) {
-            $reservations = DB::table('reservations')->paginate(25);
+            $reservations = Reservation::all();
         } else {
             $reservations = Reservation::where('user_id', $user_id)->get();
         }

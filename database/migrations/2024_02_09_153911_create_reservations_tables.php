@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('user_name');
             $table->date('start_date');
             $table->date('end_date');
+            $table->bigInteger('persons')->default(1);
             $table->timestamps();
         });
 

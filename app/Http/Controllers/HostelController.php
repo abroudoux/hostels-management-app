@@ -38,7 +38,7 @@ class HostelController extends Controller
 
     public function store(Request $request)
     {
-        $hostel = Hostel::create($request->all());
+        Hostel::create($request->all());
         return redirect()->route('hostels.index');
     }
 

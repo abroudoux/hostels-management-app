@@ -39,6 +39,7 @@ class ReservationFactory extends Factory
         $hostel_id = $hostel->id;
         $hostel_name = $hostel->name;
         $hostel_location = $hostel->location;
+        $persons = rand(1, 4);
         $start_date = now()->format('Y-m-d');
         $end_date = now()->addDays(rand(2, 10))->format('Y-m-d');
 
@@ -53,6 +54,7 @@ class ReservationFactory extends Factory
             'hostel_location' => $hostel_location,
             'start_date' => $start_date,
             'end_date' => $end_date,
+            'persons' => $persons,
         ];
     }
 }

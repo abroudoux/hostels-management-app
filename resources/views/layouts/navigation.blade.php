@@ -68,7 +68,6 @@
 
                         <form method="POST" action="{{ route('admin') }}">
                             @csrf
-
                             <x-dropdown-link :href="route('admin')"
                                     onclick="event.preventDefault();
                                                 this.closest('form').submit();">
@@ -77,7 +76,6 @@
                                 @else
                                     {{ __('Se connecter - Admin') }}
                                 @endif
-
                             </x-dropdown-link>
                         </form>
                     </x-slot>
