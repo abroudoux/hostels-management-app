@@ -20,7 +20,11 @@
                         @foreach ($roomsAvaibles as $room)
                             <li class="flex flex-row items-center border-t justify-between border-b border-white gap-4 py-3">
                                 <p class="text-white py-2">{{ $room->name }}</p>
-                                <form action="{{ route('reservations.create', ['id' => $room->id, 'user_id' => Auth::user()->id, 'hostel_id' => $hostel->id]) }}" method="POST">
+                                <form action="{{ route('reservations.create', ['id' => $room->id, 'user_id' => Auth::user()->id]) }}" method="POST" class="flex flew-row items-center">
+                                    <div class="flex mr-2">
+                                        <input type="date" name="start_date" class="bg-gray-100 dark:bg-gray-700 border-gray-300 dark:border-gray-600 rounded-lg px-3 py-2 mr-2" placeholder="Start Date" required>
+                                        <input type="date" name="end_date" class="bg-gray-100 dark:bg-gray-700 border-gray-300 dark:border-gray-600 rounded-lg px-3 py-2" placeholder="End Date" required>
+                                    </div>
                                     @csrf
                                     <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white text-lg font-bold py-3 px-4 rounded-lg">
                                         Réserver

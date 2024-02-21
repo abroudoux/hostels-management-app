@@ -18,7 +18,13 @@
                             @csrf
                             @method('DELETE')
                             <input type="hidden" value="{{ $reservation->id }}" name="id">
-                            <button type="submit" class="bg-red-500 hover:bg-red-700 text-white text-lg font-bold py-2 px-4 rounded-lg">Supprimer ma réservation</button>
+                            <button type="submit" class="bg-red-500 hover:bg-red-700 text-white text-lg font-bold py-2 px-4 rounded-lg">
+                                @if(auth()->user()->is_admin)
+                                    Supprimer la réservation
+                                @else
+                                    Supprimer ma réservation
+                                @endif
+                            </button>
                         </form>
                     </div>
                 </div>
