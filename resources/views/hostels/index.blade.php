@@ -47,6 +47,9 @@
                         @endforeach
                     </tbody>
                 </table>
+                <div class="my-4">
+                    {{ $hostels->links() }}
+                </div>
 
                 <div class="py-6">
                     @if(auth()->user()->is_admin)
