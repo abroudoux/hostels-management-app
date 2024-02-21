@@ -1,7 +1,11 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Vos réservations') }}
+            @if(auth()->user()->is_admin)
+                {{ __('Toutes les réservations') }}
+            @else
+                {{ __('Vos réservations') }}
+            @endif
         </h2>
     </x-slot>
 

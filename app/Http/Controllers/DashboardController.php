@@ -10,7 +10,11 @@ class DashboardController extends Controller
     public function index()
     {
         $user_id = auth()->user()->id;
-        $reservations = Reservation::where('user_id', $user_id)->get();
+        if (auth()->user()->isAdmin()) {
+            $reservations = Reservation::all();
+        } else {
+            $reservations = Reservation::where('user_id', $user_id)->get();
+        }
         return view('dashboard', compact('reservations'));
     }
 }
