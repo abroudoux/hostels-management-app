@@ -40,7 +40,7 @@ class ReservationController extends Controller
         return redirect()->route('reservations.index');
     }
 
-    public function create($id, $user_id)
+    public function create($id, $user_id, Request $request)
     {
         $room = Room::find($id);
         $user = User::find($user_id);
@@ -58,8 +58,8 @@ class ReservationController extends Controller
         $reservation->hostel_location = $hostel->location;
         $reservation->user_id = $user->id;
         $reservation->user_name = $user->name;
-        $reservation->start_date = now();
-        $reservation->end_date = now()->addDays(2);
+        $reservation->start_date = $request->get('start_date');
+        $reservation->end_date = $request->get('end_date');
         $reservation->save();
 
         return redirect()->route('dashboard');
