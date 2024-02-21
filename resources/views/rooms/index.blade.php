@@ -20,7 +20,7 @@
                         </tr>
                     </thead>
                     <tbody class="bg-white dark:bg-gray-900 divide-y divide-gray-200">
-                        @foreach ($rooms as $room)
+                        @foreach ($rooms->take(25) as $room)
                             <tr>
                                 <td class="px-3 py-4 dark:text-gray-100">{{ $room->name }}</td>
                                 <td class="px-3 py-4 dark:text-gray-100">{{ $room->hostel_name }}</td>
@@ -41,6 +41,9 @@
                         @endforeach
                     </tbody>
                 </table>
+                <div class="my-4">
+                    {{ $rooms->links() }}
+                </div>
             </div>
         </div>
     </div>

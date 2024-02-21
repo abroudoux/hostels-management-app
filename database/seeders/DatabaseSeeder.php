@@ -16,10 +16,10 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        User::factory(10)->create();
-        Hostel::factory(5)->create();
-        Room::factory(20)->create();
-        Reservation::factory(15)->create();
+        User::factory(25)->create();
+        Hostel::factory(50)->create();
+        Room::factory(100)->create();
+        Reservation::factory(75)->create();
 
         User::factory()->create([
             'name' => 'toto',

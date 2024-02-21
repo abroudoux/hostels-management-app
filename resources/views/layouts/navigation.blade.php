@@ -73,9 +73,9 @@
                                     onclick="event.preventDefault();
                                                 this.closest('form').submit();">
                                 @if(auth()->user()->is_admin)
-                                    {{ __('Switch admin') }}
+                                    {{ __('Se deconnecter - Admin') }}
                                 @else
-                                    {{ __('Become admin') }}
+                                    {{ __('Se connecter - Admin') }}
                                 @endif
 
                             </x-dropdown-link>

@@ -29,28 +29,30 @@ class ReservationFactory extends Factory
     public function definition(): array
     {
         $room = Room::inRandomOrder()->first();
-        $roomId = $room->id;
-        $roomName = $room->name;
-        $roomNumber = $room->room_number;
+        $room_id = $room->id;
+        $room_name = $room->name;
+        $room_number = $room->room_number;
         $user = User::inRandomOrder()->first();
-        $userId = $user->id;
-        $userName = $user->name;
+        $user_id = $user->id;
+        $user_name = $user->name;
         $hostel = Hostel::inRandomOrder()->first();
-        $hostelId = $hostel->id;
-        $hostelName = $hostel->name;
-        $hostelLocation = $hostel->location;
+        $hostel_id = $hostel->id;
+        $hostel_name = $hostel->name;
+        $hostel_location = $hostel->location;
+        $start_date = now()->format('Y-m-d');
+        $end_date = now()->addDays(rand(2, 10))->format('Y-m-d');
 
         return [
-            'room_id' => $roomId,
-            'room_name' => $roomName,
-            'room_number' => $roomNumber,
-            'user_id' => $userId,
-            'user_name' => $userName,
-            'hostel_id' => $hostelId,
-            'hostel_name' => $hostelName,
-            'hostel_location' => $hostelLocation,
-            'start_date' => $this->faker->date(),
-            'end_date' => $this->faker->date(),
+            'room_id' => $room_id,
+            'room_name' => $room_name,
+            'room_number' => $room_number,
+            'user_id' => $user_id,
+            'user_name' => $user_name,
+            'hostel_id' => $hostel_id,
+            'hostel_name' => $hostel_name,
+            'hostel_location' => $hostel_location,
+            'start_date' => $start_date,
+            'end_date' => $end_date,
         ];
     }
 }

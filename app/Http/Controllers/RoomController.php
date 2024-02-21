@@ -7,12 +7,14 @@ use App\Models\Room;
 use App\Models\Reservation;
 use App\Models\User;
 use App\Models\Hostel;
+use Illuminate\Support\Facades\DB;
+
 
 class RoomController extends Controller
 {
     public function index()
     {
-        $rooms = Room::all()->where('is_reserved', 0);
+        $rooms = DB::table('rooms')->where('is_reserved', 0)->paginate(25);
         return view('rooms.index', compact('rooms'));
     }
 

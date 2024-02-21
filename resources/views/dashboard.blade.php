@@ -22,22 +22,32 @@
                     @if (count($reservations) === 0)
                         <p>Aucune réservation pour le moment.</p>
                     @else
+                        @if(auth()->user()->is_admin)
+                            <form action="{{ route('dashboard') }}" method="GET" class="mb-6">
+                                <div class="flex items-center">
+                                    <label for="search" class="mr-2">Rechercher :</label>
+                                    <input type="text" name="search" id="search" class="border border-gray-300 text-black rounded-md px-3 py-2" placeholder="Nom d'utilisateur, nom d'hôtel ou nom de chambre">
+                                    <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white text-md font-bold py-2 px-3 rounded-md ml-2">Rechercher 🔎</button>
+                                </div>
+                            </form>
+                        @endif
+
                         <table class="min-w-full divide-y divide-gray-200 dark:bg-gray-800" aria-label="Reservation details">
                             <thead>
                                 <tr>
-                                    <th class="px-3 py-3 bg-gray-50 dark:bg-gray-700 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Nom de la room</th>
-                                    <th class="px-3 py-3 bg-gray-50 dark:bg-gray-700 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Numéro de la room</th>
-                                    <th class="px-3 py-3 bg-gray-50 dark:bg-gray-700 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Nom de l'hôtel</th>
-                                    <th class="px-3 py-3 bg-gray-50 dark:bg-gray-700 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Localisation de l'hôtel</th>
+                                    <th class="px-3 py-3 bg-gray-50 dark:bg-gray-700 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Room</th>
+                                    <th class="px-3 py-3 bg-gray-50 dark:bg-gray-700 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Numéro</th>
+                                    <th class="px-3 py-3 bg-gray-50 dark:bg-gray-700 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Hôtel</th>
+                                    <th class="px-3 py-3 bg-gray-50 dark:bg-gray-700 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Localisation</th>
                                     @if(auth()->user()->is_admin)
-                                        <th class="px-3 py-3 bg-gray-50 dark:bg-gray-700 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Nom de l'user</th>
+                                        <th class="px-3 py-3 bg-gray-50 dark:bg-gray-700 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Personne</th>
                                     @endif
-                                    <th class="px-3 py-3 bg-gray-50 dark:bg-gray-700 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Début de la réservation</th>
-                                    <th class="px-3 py-3 bg-gray-50 dark:bg-gray-700 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Fin de la réservation</th>
+                                    <th class="px-3 py-3 bg-gray-50 dark:bg-gray-700 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Début</th>
+                                    <th class="px-3 py-3 bg-gray-50 dark:bg-gray-700 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Fin</th>
                                 </tr>
                             </thead>
                             <tbody class="bg-white dark:bg-gray-900 divide-y divide-gray-200">
-                                @foreach ($reservations as $reservation)
+                                @foreach ($reservations->take(25) as $reservation)
                                     <tr>
                                         <td class="px-3 py-4 dark:text-gray-100">{{ $reservation->room_name }}</td>
                                         <td class="px-3 py-4 dark:text-gray-100">{{ $reservation->room_number }}</td>
@@ -50,12 +60,15 @@
                                         <td class="px-3 py-4 dark:text-gray-100">{{ $reservation->end_date }}</td>
                                         <td class="px-3 py-4 dark:text-gray-100">
                                             <a href="{{ route('reservations.show', $reservation->id) }}" class="bg-blue-500 rounded-lg py-2 px-3 hover:bg-blue-700">
-                                                Modifier
+                                                Infos
                                             </a>
                                     </tr>
                                 @endforeach
                             </tbody>
                         </table>
+                        <div class="my-4">
+                            {{ $reservations->links() }}
+                        </div>
                     @endif
                 </div>
                 <div class="m-6">
