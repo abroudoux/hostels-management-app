@@ -5,13 +5,12 @@ namespace App\Http\Controllers;
 use App\Models\Hostel;
 use App\Models\Room;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class HostelController extends Controller
 {
     public function index()
     {
-        $hostels = DB::table('hostels')->paginate(25);
+        $hostels = Hostel::all()->paginate(25);
         $hostels->each(function ($hostel) {
             $hostel->availableRoomsCount = Room::where('hostel_id', $hostel->id)
                 ->where('is_reserved', 0)
