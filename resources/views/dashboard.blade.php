@@ -47,6 +47,7 @@
                                         @if(auth()->user()->is_admin)
                                             <td class="px-3 py-4 dark:text-gray-100">{{ $reservation->user_name }}</td>
                                         @endif
+                                        <td class="px-3 py-4 dark:text-gray-100">{{ $reservation->persons }}</td>
                                         <td class="px-3 py-4 dark:text-gray-100">{{ $reservation->start_date }}</td>
                                         <td class="px-3 py-4 dark:text-gray-100">{{ $reservation->end_date }}</td>
                                         <td class="px-3 py-4 dark:text-gray-100">

@@ -10,7 +10,7 @@ class HostelController extends Controller
 {
     public function index()
     {
-        $hostels = Hostel::all()->paginate(25);
+        $hostels = Hostel::paginate(25);
         $hostels->each(function ($hostel) {
             $hostel->availableRoomsCount = Room::where('hostel_id', $hostel->id)
                 ->where('is_reserved', 0)

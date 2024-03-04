@@ -15,11 +15,11 @@ class UsersSeeder extends Seeder
     {
         User::factory()->count(20)->create();
 
-        User::create([
-            'name' => 'toto',
-            'email' => 'arthur.broudoux@gmail.com',
+        User::factory()->create([
+            'name' => 'Admin',
+            'email' => 'toto@toto.com',
             'password' => 'totototo',
-            'is_admin' => '1',
+            'is_admin' => 1,
         ]);
     }
 }
