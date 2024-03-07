@@ -10,10 +10,17 @@ use App\Models\Hostel;
 
 class RoomController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $rooms = Room::where('is_reserved', 0)->paginate(25);
-        return view('rooms.index', compact('rooms'));
+        $search = $request->input('search');
+        $query = Room::query();
+
+        if ($search) {
+            $query->where('name', 'like', '%' . $search . '%');
+        }
+
+        $rooms = $query->where('is_reserved', 0)->paginate(25);
+        return view('rooms.index', compact('rooms', 'search'));
     }
 
     public function show($id)

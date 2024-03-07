@@ -8,7 +8,18 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="p-6 text-gray-900 dark:text-gray-100 dark:bg-gray-800 sm:rounded-lg">
-                <h1 class="font-semibold text-3xl pb-6">Liste des chambres disponibles</h1>
+                <div class="flex justify-between items-center">
+                    <h1 class="font-semibold text-3xl pb-6">Liste des chambres disponibles</h1>
+
+                    <form action="{{ route('rooms.index') }}" method="GET" class="flex items-center">
+                        @if ($search)
+                            <p class="text-white text-sm mr-2">Résultats pour : {{ $search }}</p>
+                            <a href="{{ route('hostels.index') }}" class="text-blue-500 hover:underline text-sm pr-6">❌</a>
+                        @endif
+                        <input type="text" name="search" placeholder="Rechercher par nom d'hôtel..." class="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500">
+                        <button type="submit" class="ml-2 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 focus:outline-none focus:bg-blue-600">Rechercher</button>
+                    </form>
+                </div>
 
                 <table class="min-w-full divide-y divide-gray-200 dark:bg-gray-800" aria-label="Rooms Table">
                     <thead>

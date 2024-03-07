@@ -8,18 +8,28 @@ use Illuminate\Http\Request;
 
 class HostelController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $hostels = Hostel::paginate(25);
+        $search = $request->input('search');
+        $query = Hostel::query();
+
+        if ($search) {
+            $query->where('name', 'like', '%' . $search . '%');
+        }
+
+        $hostels = $query->paginate(25);
+
         $hostels->each(function ($hostel) {
             $hostel->availableRoomsCount = Room::where('hostel_id', $hostel->id)
                 ->where('is_reserved', 0)
                 ->count();
         });
+
         $hostelsAvaibles = $hostels->filter(function ($hostel) {
             return $hostel->availableRoomsCount > 0;
         });
-        return view('hostels.index', compact('hostels', 'hostelsAvaibles'));
+
+        return view('hostels.index', compact('hostels', 'hostelsAvaibles', 'search'));
     }
 
     public function show($id)
