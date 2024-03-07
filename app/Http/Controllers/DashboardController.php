@@ -7,15 +7,23 @@ use App\Models\Reservation;
 
 class DashboardController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
+        $search = $request->input('search');
         $user_id = auth()->user()->id;
-        if (auth()->user()->isAdmin()) {
-            $reservations = Reservation::all();
-        } else {
-            $reservations = Reservation::where('user_id', $user_id)->get();
+        $query = Reservation::query();
+
+        if ($search) {
+            $query->where('user_name', 'like', '%' . $search . '%');
         }
 
-        return view('dashboard', compact('reservations'));
+        if (!auth()->user()->isAdmin()) {
+            $query->where('user_id', $user_id);
+        }
+
+        $reservations = $query->get();
+
+        return view('dashboard', compact('reservations', 'search'));
+
     }
 }

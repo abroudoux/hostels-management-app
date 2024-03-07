@@ -14,9 +14,9 @@
                     <form action="{{ route('rooms.index') }}" method="GET" class="flex items-center">
                         @if ($search)
                             <p class="text-white text-sm mr-2">Résultats pour : {{ $search }}</p>
-                            <a href="{{ route('hostels.index') }}" class="text-blue-500 hover:underline text-sm pr-6">❌</a>
+                            <a href="{{ route('rooms.index') }}" class="text-blue-500 hover:underline text-sm pr-6">❌</a>
                         @endif
-                        <input type="text" name="search" placeholder="Rechercher par nom d'hôtel..." class="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500">
+                        <input type="text" name="search" placeholder="Rechercher par nom de chambre..." class="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500">
                         <button type="submit" class="ml-2 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 focus:outline-none focus:bg-blue-600">Rechercher</button>
                     </form>
                 </div>
